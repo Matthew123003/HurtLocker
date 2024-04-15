@@ -11,6 +11,8 @@ public class Main {
     public static void main(String[] args) throws Exception{
         ListParser lp = new ListParser();
         String output = (new Main()).readRawDataToString();
+        lp.createItem(output);
+        System.out.println(lp.ListConstructor());
 
 
 

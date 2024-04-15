@@ -104,18 +104,18 @@ public class ListParser {
         itemList.add(new Items(name, price, type, date));
     }
 
-    public String groceryListConstructor() {
-        StringBuilder groceryList = new StringBuilder();
-        groceryList.append(itemCounter("Milk"));
-        groceryList.append("\n\n");
-        groceryList.append(itemCounter("Bread"));
-        groceryList.append("\n");
-        groceryList.append(itemCounter("Cookies"));
-        groceryList.append("\n");
-        groceryList.append(itemCounter("Apples"));
-        groceryList.append("\n\n");
-        groceryList.append("Errors\t\t\tseen: " + errorCount + " times");
-        return groceryList.toString();
+    public String ListConstructor() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(itemCounter("Milk"));
+        sb.append("\n\n");
+        sb.append(itemCounter("Bread"));
+        sb.append("\n");
+        sb.append(itemCounter("Cookies"));
+        sb.append("\n");
+        sb.append(itemCounter("Apples"));
+        sb.append("\n\n");
+        sb.append("Errors\t\t\tseen: " + errorCount + " times");
+        return sb.toString();
     }
 
 }
