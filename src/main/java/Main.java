@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +17,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception{
+        ListParser lp = new ListParser();
         String output = (new Main()).readRawDataToString();
-        System.out.println(output);
+        String[] newStr = lp.itemSplit(output);
+        String str = lp.toSingleLine(newStr);
+        String[] split = lp.stringSpilt(str);
+        System.out.println(Arrays.toString(split));
 
 
     }

@@ -1,5 +1,3 @@
-import com.sun.tools.javac.jvm.Items;
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -13,12 +11,12 @@ public class ListParser {
     //Regex Patterns
     private String fieldPattern = "([A-Za-z0-9.]+)";
     private String stringSplitPattern = "([;:^@%*!])";
-    private String itemSplitPattern = "(##)";
+    private String lineSplitPattern = "(##)";
 
     //Regex compilers
     private Pattern fieldName = Pattern.compile(fieldPattern);
     private Pattern splitter = Pattern.compile(stringSplitPattern);
-    private Pattern itemSplitter = Pattern.compile(itemSplitPattern);
+    private Pattern itemSplitter = Pattern.compile(lineSplitPattern);
 
     private ArrayList<Items> itemList = new ArrayList<>();
 
@@ -26,12 +24,23 @@ public class ListParser {
         return itemList;
     }
 
-    public String[] stringSpilt(String string){
-        return null;
+    public String[] itemSplit(String string){
+        String[] splitItem = string.split(lineSplitPattern);
+        return splitItem;
     }
 
-    public String itemSplit(){
-        return null;
+    public String toSingleLine(String[] strings){
+        StringBuilder sb = new StringBuilder();
+        for(String str : strings){
+            sb.append(str).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public String[] stringSpilt(String string){
+        String[] splitStr = string.split(stringSplitPattern);
+        return splitStr;
     }
 
 }
