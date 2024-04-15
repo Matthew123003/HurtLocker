@@ -109,7 +109,7 @@ public class ListParserTest {
                 "\n" +
                 "Errors\t\t\tseen: 4 times";
         listParser.createItem(Main.readRawDataToString());
-        String actual = listParser.groceryListConstructor();
+        String actual = listParser.ListConstructor();
         Assert.assertEquals(expected, actual);
     }
 }
