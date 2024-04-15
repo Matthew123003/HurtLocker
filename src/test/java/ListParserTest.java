@@ -1,23 +1,28 @@
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+
 public class ListParserTest {
-    ItemParser itemParser;
+    ListParser listParser;
 
     @Before
     public void setUp() throws Exception {
-        itemParser = new ItemParser();
+        listParser = new ListParser();
     }
 
     @Test
     public void stringSplitterTest () throws Exception {
         String expected = "Milk";
-        String actual = itemParser.stringSplitter(Main.readRawDataToString())[1];
-        assertEquals(expected, actual);
+        String actual = listParser.stringSplitter(Main.readRawDataToString())[1];
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void stringSplitterTestToFailure () {
         String expected = "";
-        String actual = itemParser.stringSplitter("naME:;price:1.23;type:Food;expiration:1/02/2016##")[1];
-        assertEquals(expected, actual);
+        String actual = listParser.stringSplitter("naME:;price:1.23;type:Food;expiration:1/02/2016##")[1];
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -28,9 +33,9 @@ public class ListParserTest {
                     "Price:\t3.23\t\tseen: 5 times\n" +
                     "-------------\t\t-------------\n" +
                     "Price:\t1.23\t\tseen: 1 times";
-            itemParser.createItem(Main.readRawDataToString());
-            String actual = itemParser.itemCounter("Milk");
-            assertEquals(expected, actual);
+            listParser.createItem(Main.readRawDataToString());
+            String actual = listParser.itemCounter("Milk");
+            Assert.assertEquals(expected, actual);
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -39,43 +44,43 @@ public class ListParserTest {
     @Test
     public void nameCleanup() throws Exception {
         String expected = "Milk";
-        String actual = itemParser.nameCleanup("milk");
-        assertEquals(expected, actual);
+        String actual = listParser.nameCleanup("milk");
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void createItem() throws Exception {
         String expectedName = "Milk";
         String expectedPrice = "3.23";
-        itemParser.createItem("naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food;expiration:1/02/2016##");
-        String actualName = itemParser.getListOfItems().get(0).getName();
-        String actualPrice = itemParser.getListOfItems().get(0).getPrice();
-        assertEquals(expectedName, actualName);
-        assertEquals(expectedPrice, actualPrice);
+        listParser.createItem("naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food;expiration:1/02/2016##");
+        String actualName = listParser.getItemList().get(0).getName();
+        String actualPrice = listParser.getItemList().get(0).getPrice();
+        Assert.assertEquals(expectedName, actualName);
+        Assert.assertEquals(expectedPrice, actualPrice);
     }
 
     @Test
     public void addItemToList() throws Exception {
         int expectedLength = 1;
-        itemParser.addItemToList("Milk", "1.23", "Food", "1/25/2016");
-        int actualLength = itemParser.getListOfItems().size();
-        assertEquals(expectedLength, actualLength);
+        listParser.addItemToList("Milk", "1.23", "Food", "1/25/2016");
+        int actualLength = listParser.getItemList().size();
+        Assert.assertEquals(expectedLength, actualLength);
     }
 
     @Test
     public void findItemField() throws Exception {
         String expected = "Milk";
-        String actual = itemParser.findItemField(Main.readRawDataToString(), 1);
-        assertEquals(expected, actual);
+        String actual = listParser.findItemField(Main.readRawDataToString(), 1);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void findItemFieldExceptionErrorCounter() throws Exception {
         int errorsBeforeTheCounter = 1;
         String expected = "Bread";
-        String actual = itemParser.findItemField("naME:;price:1.23;type:Food;expiration:1/02/2016##", 1);
-        int errorsAfterTheCounter = itemParser.getErrorCount();
-        assertEquals(errorsBeforeTheCounter, errorsAfterTheCounter);
+        String actual = listParser.findItemField("naME:;price:1.23;type:Food;expiration:1/02/2016##", 1);
+        int errorsAfterTheCounter = listParser.getErrorCount();
+        Assert.assertEquals(errorsBeforeTheCounter, errorsAfterTheCounter);
     }
 
     @Test
@@ -103,9 +108,8 @@ public class ListParserTest {
                 "Price:\t0.23\t\tseen: 2 times\n" +
                 "\n" +
                 "Errors\t\t\tseen: 4 times";
-        itemParser.createItem(Main.readRawDataToString());
-        String actual = itemParser.groceryListConstructor();
-        assertEquals(expected, actual);
+        listParser.createItem(Main.readRawDataToString());
+        String actual = listParser.groceryListConstructor();
+        Assert.assertEquals(expected, actual);
     }
-}
 }
