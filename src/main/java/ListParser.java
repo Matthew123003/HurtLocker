@@ -43,7 +43,6 @@ public class ListParser {
                     priceCounter.put(item.getPrice(), priceCounter.get(item.getPrice())+1);
                 } else if (item.getPrice().equals("blank")) {
                     stringCount--;
-                    continue;
                 } else {
                     priceCounter.put(item.getPrice(), 1);
                 }
