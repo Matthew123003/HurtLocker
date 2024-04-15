@@ -19,10 +19,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         ListParser lp = new ListParser();
         String output = (new Main()).readRawDataToString();
-        String[] newStr = lp.itemSplit(output);
-        String str = lp.toSingleLine(newStr);
-        String[] split = lp.stringSpilt(str);
-        System.out.println(Arrays.toString(split));
+
 
 
     }
