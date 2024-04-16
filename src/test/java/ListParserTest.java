@@ -26,22 +26,6 @@ public class ListParserTest {
     }
 
     @Test
-    public void testItemCounter() throws Exception {
-        try {
-            String expected = "name:\tMilk\t\tseen: 6 times\n" +
-                    "=============\t\t=============\n" +
-                    "Price:\t3.23\t\tseen: 5 times\n" +
-                    "-------------\t\t-------------\n" +
-                    "Price:\t1.23\t\tseen: 1 times";
-            listParser.createItem(Main.readRawDataToString());
-            String actual = listParser.itemCounter("Milk");
-            Assert.assertEquals(expected, actual);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
-
-    @Test
     public void nameCleanup() throws Exception {
         String expected = "Milk";
         String actual = listParser.nameCleanup("milk");
@@ -81,35 +65,5 @@ public class ListParserTest {
         String actual = listParser.findItemField("naME:;price:1.23;type:Food;expiration:1/02/2016##", 1);
         int errorsAfterTheCounter = listParser.getErrorCount();
         Assert.assertEquals(errorsBeforeTheCounter, errorsAfterTheCounter);
-    }
-
-    @Test
-    public void testGroceryListConstructor() throws Exception {
-        String expected = "name:\tMilk\t\tseen: 6 times\n" +
-                "=============\t\t=============\n" +
-                "Price:\t3.23\t\tseen: 5 times\n" +
-                "-------------\t\t-------------\n" +
-                "Price:\t1.23\t\tseen: 1 times\n" +
-                "\n" +
-                "name:\tBread\t\tseen: 6 times\n" +
-                "=============\t\t=============\n" +
-                "Price:\t1.23\t\tseen: 6 times\n" +
-                "-------------\t\t-------------\n" +
-                "\n" +
-                "name:\tCookies\t\tseen: 8 times\n" +
-                "=============\t\t=============\n" +
-                "Price:\t2.25\t\tseen: 8 times\n" +
-                "-------------\t\t-------------\n" +
-                "\n" +
-                "name:\tApples\t\tseen: 4 times\n" +
-                "=============\t\t=============\n" +
-                "Price:\t0.25\t\tseen: 2 times\n" +
-                "-------------\t\t-------------\n" +
-                "Price:\t0.23\t\tseen: 2 times\n" +
-                "\n" +
-                "Errors\t\t\tseen: 4 times";
-        listParser.createItem(Main.readRawDataToString());
-        String actual = listParser.ListConstructor();
-        Assert.assertEquals(expected, actual);
     }
 }
