@@ -18,8 +18,8 @@ public class ItemsTest {
 
     @Test
     public void setName() throws Exception {
-        String expected = "George";
-        items.setName("George");
+        String expected = "Matt";
+        items.setName("Matt");
         String actual = items.getName();
         Assert.assertEquals(expected, actual);
     }
@@ -48,8 +48,8 @@ public class ItemsTest {
 
     @Test
     public void setType() throws Exception {
-        String expected = "Book";
-        items.setType("Book");
+        String expected = "Plane";
+        items.setType("Plane");
         String actual = items.getType();
         Assert.assertEquals(expected, actual);
     }
