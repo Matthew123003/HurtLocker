@@ -16,10 +16,8 @@ public class ListParser {
     private String stringSplitPattern = "([;:^@%*!])";
     private String lineSplitPattern = "(##)";
 
-    //Regex compilers
+    //Regex compiler
     private Pattern fieldName = Pattern.compile(fieldPattern);
-    private Pattern splitter = Pattern.compile(stringSplitPattern);
-    private Pattern itemSplitter = Pattern.compile(lineSplitPattern);
 
     private ArrayList<Items> itemList = new ArrayList<>();
 
